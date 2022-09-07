@@ -658,14 +658,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9bfa74292b9fd488182035dff9181b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 10
-  sprintSpeed: 20
+  walkSpeed: 45
   groundDrag: 4
   jumpForce: 3
   jumpCooldown: 0.25
   airMultiplier: 0.4
   jumpKey: 32
-  sprintKey: 304
   groundCheck: {fileID: 603059295}
   whatIsGround:
     serializedVersion: 2

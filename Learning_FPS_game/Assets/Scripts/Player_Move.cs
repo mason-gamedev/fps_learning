@@ -7,7 +7,6 @@ public class Player_Move : MonoBehaviour
     [Header("Movement")]
     private float moveSpeed;
     public float walkSpeed;
-    public float sprintSpeed;
 
     public float groundDrag;
 
@@ -18,7 +17,6 @@ public class Player_Move : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -45,7 +43,6 @@ public class Player_Move : MonoBehaviour
     public enum MovementState
     {
         walking,
-        sprinting,
         air
     }
 
@@ -163,13 +160,7 @@ public class Player_Move : MonoBehaviour
 
     private void StateHandler()
     {
-        if (grounded && Input.GetKey(sprintKey))
-        {
-            state = MovementState.sprinting;
-            moveSpeed = sprintSpeed;
-        }
-
-        else if (grounded)
+        if (grounded)
         {
             state = MovementState.walking;
             moveSpeed = walkSpeed;

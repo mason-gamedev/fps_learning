@@ -22,13 +22,5 @@ public class animationStateController : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0){
             animator.SetBool("isWalking", false);
         }
-
-        if (Input.GetKey("left shift") && animator.GetBool("isWalking") == true){
-            animator.SetBool("isSprinting", true);
-        }
-
-        if (!Input.GetKey("left shift")){
-            animator.SetBool("isSprinting", false);
-        }
     }
 }
