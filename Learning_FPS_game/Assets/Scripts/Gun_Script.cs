@@ -79,6 +79,7 @@ public class Gun_Script : MonoBehaviour
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             GameObject bulletHoleGameObject = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(bulletHoleGameObject, 2f);
+
         }
     }
 }
