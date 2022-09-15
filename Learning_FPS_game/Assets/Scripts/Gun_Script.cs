@@ -19,7 +19,7 @@ public class Gun_Script : MonoBehaviour
     public int maxAmmo = 10;
     private int currentAmmo;
     public float reloadTime = 1f;
-    private bool isReloading;
+    public bool isReloading = false;
 
     void Start()
     {
