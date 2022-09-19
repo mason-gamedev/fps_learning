@@ -31,9 +31,6 @@ public class Player_Look : MonoBehaviour
         transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
         player.Rotate(Vector3.up * inputX);
-
-        while (Input.GetMouseButton(1)){
-            Camera.main.fieldOfView = 45;
-        }
     }
 }
+

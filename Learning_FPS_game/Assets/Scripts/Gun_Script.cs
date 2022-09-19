@@ -21,6 +21,10 @@ public class Gun_Script : MonoBehaviour
     public float reloadTime = 1f;
     public bool isReloading = false;
 
+    public Transform adsPosition;
+    public Transform hipPosition;
+    public Transform weaponAnchor;
+
     void Start()
     {
         currentAmmo = maxAmmo;
@@ -44,6 +48,8 @@ public class Gun_Script : MonoBehaviour
             Shoot();
             lastShot = Time.time;
         }
+
+        aimDownSights();
     }
 
     IEnumerator Reload()
@@ -80,6 +86,19 @@ public class Gun_Script : MonoBehaviour
             GameObject bulletHoleGameObject = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(bulletHoleGameObject, 2f);
 
+        }
+    }
+
+    void aimDownSights()
+    {
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            weaponAnchor.position = Vector3.Lerp(weaponAnchor.position, adsPosition.position, Time.deltaTime * 10);
+        }
+
+        else
+        {
+            weaponAnchor.position = Vector3.Lerp(weaponAnchor.position, hipPosition.position, Time.deltaTime * 10);
         }
     }
 }
