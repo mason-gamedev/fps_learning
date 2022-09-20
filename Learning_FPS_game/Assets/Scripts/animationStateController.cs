@@ -6,8 +6,6 @@ public class animationStateController : MonoBehaviour
 {
     Animator animator;
 
-    private Gun_Script myGunScript;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +15,13 @@ public class animationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            animator.SetBool("isAiming", true);
+        }
+        else
+        {
+            animator.SetBool("isAiming", false);
+        }
     }
 }
