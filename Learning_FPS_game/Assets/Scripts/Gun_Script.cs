@@ -93,12 +93,12 @@ public class Gun_Script : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            weaponAnchor.position = Vector3.Lerp(weaponAnchor.position, adsPosition.position, Time.deltaTime * 10);
+            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 10);
         }
 
         else
         {
-            weaponAnchor.position = Vector3.Lerp(weaponAnchor.position, hipPosition.position, Time.deltaTime * 10);
+            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 10);
         }
     }
 }
