@@ -25,9 +25,14 @@ public class Gun_Script : MonoBehaviour
     public Transform hipPosition;
     public Transform weaponAnchor;
 
+    private Recoil Recoil_Script;
+    public GameObject player;
+
     void Start()
     {
         currentAmmo = maxAmmo;
+
+        Recoil_Script = player.transform.Find("CameraRot/CameraRecoil").GetComponent<Recoil>();
     }
     
     void Update()
@@ -69,6 +74,8 @@ public class Gun_Script : MonoBehaviour
     {
         muzzleFlash.Play();
 
+        Recoil_Script.RecoilFire();
+
         currentAmmo --;
 
         RaycastHit hit;
@@ -93,12 +100,12 @@ public class Gun_Script : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 10);
+            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 100);
         }
 
         else
         {
-            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 10);
+            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 100);
         }
     }
 }
