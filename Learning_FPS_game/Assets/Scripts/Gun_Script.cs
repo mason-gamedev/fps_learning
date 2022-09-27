@@ -16,7 +16,7 @@ public class Gun_Script : MonoBehaviour
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
 
-    public int maxAmmo = 10;
+    public int maxAmmo = 20;
     private int currentAmmo;
     public float reloadTime = 1f;
     public bool isReloading = false;
@@ -100,12 +100,12 @@ public class Gun_Script : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 100);
+            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 3);
         }
 
         else
         {
-            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 100);
+            weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 3);
         }
     }
 }

@@ -11,6 +11,10 @@ public class Recoil : MonoBehaviour
     [SerializeField] private float RecoilY;
     [SerializeField] private float RecoilZ;
 
+    [SerializeField] private float aimRecoilX;
+    [SerializeField] private float aimRecoilY;
+    [SerializeField] private float aimRecoilZ;
+
     [SerializeField] private float snappiness;
     [SerializeField] private float returnSpeed;
 
@@ -30,6 +34,13 @@ public class Recoil : MonoBehaviour
 
     public void RecoilFire()
     {
-        TargetRotation += new Vector3(RecoilX, Random.Range(-RecoilY, RecoilY), Random.Range(-RecoilZ, RecoilZ));
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            TargetRotation += new Vector3(aimRecoilX, Random.Range(-aimRecoilY, aimRecoilY), Random.Range(-aimRecoilZ, aimRecoilZ));
+        }
+        else
+        {
+            TargetRotation += new Vector3(RecoilX, Random.Range(-RecoilY, RecoilY), Random.Range(-RecoilZ, RecoilZ));
+        }
     }
 }

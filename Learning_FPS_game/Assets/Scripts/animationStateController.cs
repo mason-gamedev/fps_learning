@@ -5,11 +5,13 @@ using UnityEngine;
 public class animationStateController : MonoBehaviour
 {
     Animator animator;
+    Animator gun_animator;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        gun_animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,15 @@ public class animationStateController : MonoBehaviour
         else
         {
             animator.SetBool("isAiming", false);
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            gun_animator.SetBool("isShooting", true);
+        }
+        else
+        {
+            gun_animator.SetBool("isShooting", false);
         }
     }
 }

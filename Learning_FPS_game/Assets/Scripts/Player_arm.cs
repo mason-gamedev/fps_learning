@@ -18,13 +18,13 @@ public class Player_arm : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            leftHand.position = Vector3.MoveTowards(leftHand.position, handGrip.position, Time.deltaTime * 10);
-            forearm.position = Vector3.MoveTowards(forearm.position, forearmEnd.position, Time.deltaTime * 10);
+            //leftHand.position = Vector3.Lerp(leftHand.position, handGrip.position, Time.deltaTime * 10);
+            forearm.position = Vector3.Lerp(forearm.position, forearmEnd.position, Time.deltaTime * 35);
         }
         else
         {
-            leftHand.position = Vector3.MoveTowards(leftHand.position, leftHandDefault.position, Time.deltaTime * 10);
-            forearm.position = Vector3.MoveTowards(forearm.position, forearmDefault.position, Time.deltaTime * 10);
+            //leftHand.position = Vector3.Lerp(leftHand.position, leftHandDefault.position, Time.deltaTime * 10);
+            forearm.position = Vector3.Lerp(forearm.position, forearmDefault.position, Time.deltaTime * 35);
         }
     }
 }
