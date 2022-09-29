@@ -26,13 +26,13 @@ public class animationStateController : MonoBehaviour
             animator.SetBool("isAiming", false);
         }
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        //if (Input.GetKey(KeyCode.Mouse0))
         {
-            gun_animator.SetBool("isShooting", true);
+            //gun_animator.SetBool("isShooting", true);
         }
-        else
+        //else
         {
-            gun_animator.SetBool("isShooting", false);
+            //gun_animator.SetBool("isShooting", false);
         }
     }
 }

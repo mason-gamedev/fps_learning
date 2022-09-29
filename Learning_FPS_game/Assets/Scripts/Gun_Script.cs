@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun_Script : MonoBehaviour
 {
+    Animator gun_animator;
+
     public float damage = 10f;
     public float range = 100f;
 
@@ -20,6 +22,7 @@ public class Gun_Script : MonoBehaviour
     private int currentAmmo;
     public float reloadTime = 1f;
     public bool isReloading = false;
+    public bool outOfAmmo = false;
 
     public Transform adsPosition;
     public Transform hipPosition;
@@ -33,6 +36,8 @@ public class Gun_Script : MonoBehaviour
         currentAmmo = maxAmmo;
 
         Recoil_Script = player.transform.Find("CameraRot/CameraRecoil").GetComponent<Recoil>();
+
+        gun_animator = GetComponent<Animator>();
     }
     
     void Update()
@@ -44,14 +49,19 @@ public class Gun_Script : MonoBehaviour
 
         if (currentAmmo <= 0)
         {
+            outOfAmmo = true;
             StartCoroutine(Reload());
             return;
         }
 
-        if(Time.time > fireRate + lastShot && Input.GetKey(KeyCode.Mouse0))
+        if(Time.time > fireRate + lastShot && Input.GetKey(KeyCode.Mouse0) && !outOfAmmo)
         {
             Shoot();
             lastShot = Time.time;
+        }
+        else
+        {
+            gun_animator.SetBool("isShooting", false);
         }
 
         aimDownSights();
@@ -61,17 +71,23 @@ public class Gun_Script : MonoBehaviour
     {
         isReloading = true;
 
-        Debug.Log("Reloading...");
+        gun_animator.SetBool("isReloading", true);
 
         yield return new WaitForSeconds(reloadTime);
 
         currentAmmo = maxAmmo;
 
+        outOfAmmo = false;
+
         isReloading = false;
+
+        gun_animator.SetBool("isReloading", false);
     }
 
     void Shoot()
     {
+        gun_animator.SetBool("isShooting", true);
+
         muzzleFlash.Play();
 
         Recoil_Script.RecoilFire();
@@ -92,7 +108,6 @@ public class Gun_Script : MonoBehaviour
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             GameObject bulletHoleGameObject = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(bulletHoleGameObject, 2f);
-
         }
     }
 

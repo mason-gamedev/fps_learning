@@ -26,5 +26,15 @@ public class Player_arm : MonoBehaviour
             //leftHand.position = Vector3.Lerp(leftHand.position, leftHandDefault.position, Time.deltaTime * 10);
             forearm.position = Vector3.Lerp(forearm.position, forearmDefault.position, Time.deltaTime * 35);
         }
+
+        //if (Input.GetKey(KeyCode.Mouse0) || !Input.GetKey(KeyCode.Mouse1))
+        {
+            //leftHand.position = Vector3.Lerp(leftHand.position, handGrip.position, Time.deltaTime * 35);
+        }
+        //else
+        {
+            //leftHand.position = Vector3.Lerp(leftHand.position, leftHandDefault.position, Time.deltaTime * 35);
+
+        }
     }
 }
