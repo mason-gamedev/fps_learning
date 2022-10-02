@@ -27,6 +27,7 @@ public class Gun_Script : MonoBehaviour
     public Transform adsPosition;
     public Transform hipPosition;
     public Transform weaponAnchor;
+    public GameObject retical;
 
     private Recoil Recoil_Script;
     public GameObject player;
@@ -116,11 +117,13 @@ public class Gun_Script : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1))
         {
             weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 3);
+            retical.SetActive(false);
         }
 
         else
         {
             weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 3);
+            retical.SetActive(true);
         }
     }
 }

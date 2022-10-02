@@ -734,9 +734,11 @@ MonoBehaviour:
   maxAmmo: 10
   reloadTime: 2
   isReloading: 0
+  outOfAmmo: 0
   adsPosition: {fileID: 1993906866}
   hipPosition: {fileID: 32789584}
   weaponAnchor: {fileID: 1634397064}
+  retical: {fileID: 1995399732}
   player: {fileID: 1347154967}
 --- !u!95 &577809699
 Animator:
@@ -1387,6 +1389,7 @@ MonoBehaviour:
   forearmEnd: {fileID: 1645650096}
   forearm: {fileID: 1298348156}
   forearmDefault: {fileID: 1419000117}
+  gun_script: {fileID: 577809696}
 --- !u!1 &1307031716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,7 +1499,7 @@ Rigidbody:
   m_GameObject: {fileID: 1347154967}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0

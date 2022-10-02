@@ -13,6 +13,8 @@ public class Player_arm : MonoBehaviour
     public Transform forearm;
     public Transform forearmDefault;
 
+    public Gun_Script gun_script;
+
     // Update is called once per frame
     void Update()
     {
@@ -36,5 +38,6 @@ public class Player_arm : MonoBehaviour
             //leftHand.position = Vector3.Lerp(leftHand.position, leftHandDefault.position, Time.deltaTime * 35);
 
         }
+
     }
 }
