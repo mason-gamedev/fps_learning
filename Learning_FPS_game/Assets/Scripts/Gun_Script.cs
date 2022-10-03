@@ -18,7 +18,7 @@ public class Gun_Script : MonoBehaviour
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
 
-    public int maxAmmo = 20;
+    public int maxAmmo;
     private int currentAmmo;
     public float reloadTime = 1f;
     public bool isReloading = false;
