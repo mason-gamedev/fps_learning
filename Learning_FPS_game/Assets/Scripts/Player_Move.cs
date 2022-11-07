@@ -56,7 +56,8 @@ public class Player_Move : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        grounded = Physics.CheckSphere(groundCheck.position, 1f, whatIsGround);
+        //grounded = Physics.CheckSphere(groundCheck.position, .5f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 2.5f, whatIsGround);
         
         if (grounded)
         {
@@ -92,13 +93,13 @@ public class Player_Move : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if (OnSlope() && !exitingSlope)
+        //if (OnSlope() && !exitingSlope)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            //rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
-            if (rb.velocity.y > 0)
+            //if (rb.velocity.y > 0)
             {
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                //rb.AddForce(Vector3.down * 80f, ForceMode.Force);
             }
         }
 
@@ -112,7 +113,7 @@ public class Player_Move : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
-        rb.useGravity = !OnSlope();
+        //rb.useGravity = !OnSlope();
     }
 
     private void FixedUpdate()
@@ -122,7 +123,7 @@ public class Player_Move : MonoBehaviour
 
     private void SpeedControl()
     {
-        if (OnSlope() && !exitingSlope)
+        //if (OnSlope() && !exitingSlope)
         {
             if (rb.velocity.magnitude > moveSpeed)
             {
@@ -130,14 +131,14 @@ public class Player_Move : MonoBehaviour
             }
         }
 
-        else
+        //else
         {
-            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            //Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-            if (flatVel.magnitude > moveSpeed)
+            //if (flatVel.magnitude > moveSpeed)
             {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            //Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            //rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }   
     }
@@ -172,19 +173,19 @@ public class Player_Move : MonoBehaviour
         }
     }
 
-    private bool OnSlope()
-    {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
-        {
-            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0;
-        }
+    //private bool OnSlope()
+    //{
+        //if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        //{
+            //float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            //return angle < maxSlopeAngle && angle != 0;
+        //}
 
-        return false;
-    }
+        //return false;
+    //}
 
-    private Vector3 GetSlopeMoveDirection()
-    {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
-    }
+    //private Vector3 GetSlopeMoveDirection()
+    //{
+        //return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    //}
 }
