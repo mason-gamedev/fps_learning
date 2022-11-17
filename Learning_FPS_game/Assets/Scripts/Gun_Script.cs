@@ -60,6 +60,11 @@ public class Gun_Script : MonoBehaviour
             Shoot();
             lastShot = Time.time;
         }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            gun_animator.SetBool("isShooting", true);
+        }
         else
         {
             gun_animator.SetBool("isShooting", false);
@@ -74,6 +79,8 @@ public class Gun_Script : MonoBehaviour
 
         gun_animator.SetBool("isReloading", true);
 
+        gun_animator.SetBool("isShooting", false);
+
         yield return new WaitForSeconds(reloadTime);
 
         currentAmmo = maxAmmo;
@@ -87,8 +94,6 @@ public class Gun_Script : MonoBehaviour
 
     void Shoot()
     {
-        gun_animator.SetBool("isShooting", true);
-
         muzzleFlash.Play();
 
         Recoil_Script.RecoilFire();
