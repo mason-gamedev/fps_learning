@@ -103,17 +103,19 @@ public class Gun_Script : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
 
             Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
+            if (hit.transform.tag == "Target")
             {
                 target.TakeDamage(damage);
             }
 
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             GameObject bulletHoleGameObject = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(bulletHoleGameObject, 2f);
+            
+            Destroy(bulletHoleGameObject, 1f);
+
+
         }
     }
 
@@ -124,7 +126,6 @@ public class Gun_Script : MonoBehaviour
             weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, adsPosition.position, Time.deltaTime * 3);
             retical.SetActive(false);
         }
-
         else
         {
             weaponAnchor.position = Vector3.MoveTowards(weaponAnchor.position, hipPosition.position, Time.deltaTime * 3);
