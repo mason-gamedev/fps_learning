@@ -8,29 +8,36 @@ public class Target : MonoBehaviour
     public bool isDead = false;
 
     public GameObject hitmarker;
+    public GameObject redHitmarker;
 
     void Start()
     {
         hitmarker.SetActive(false);
+        redHitmarker.SetActive(false);
+    }
+
+    void Update()
+    {
+
     }
 
     public void TakeDamage (float amount)
     {
 
-        //StartCoroutine(Hitmarker());
+        StartCoroutine(Hitmarker());
 
         health -= amount;
         if (health <= 0f)
         {
+            hitmarker.SetActive(false);
+            StartCoroutine(RedHitmarker());
+            isDead = true;
             Die();
         }
-
-        StartCoroutine(Hitmarker());
 
         void Die()
         {
             Destroy(gameObject);
-            isDead = true;
         }
 
         IEnumerator Hitmarker()
@@ -38,6 +45,13 @@ public class Target : MonoBehaviour
             hitmarker.SetActive(true);
             yield return new WaitForSeconds(0.2f);
             hitmarker.SetActive(false);
+        }
+
+        IEnumerator RedHitmarker()
+        {
+            redHitmarker.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            redHitmarker.SetActive(false);
         }
     }
 }
