@@ -73,6 +73,7 @@ public class Gun_Script : MonoBehaviour
         aimDownSights();
     }
 
+
     IEnumerator Reload()
     {
         isReloading = true;

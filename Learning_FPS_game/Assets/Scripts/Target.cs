@@ -10,10 +10,21 @@ public class Target : MonoBehaviour
     public GameObject hitmarker;
     public GameObject redHitmarker;
 
+    public AudioClip hitmarkerClip;
+    public AudioClip redHitmarkerClip;
+    public AudioSource audioSource;
+
     void Start()
     {
         hitmarker.SetActive(false);
         redHitmarker.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -32,17 +43,14 @@ public class Target : MonoBehaviour
             hitmarker.SetActive(false);
             StartCoroutine(RedHitmarker());
             isDead = true;
-            Die();
-        }
-
-        void Die()
-        {
-            Destroy(gameObject);
+            //Die();
+            StartCoroutine(die());
         }
 
         IEnumerator Hitmarker()
         {
             hitmarker.SetActive(true);
+            audioSource.PlayOneShot(hitmarkerClip, .7f);
             yield return new WaitForSeconds(0.2f);
             hitmarker.SetActive(false);
         }
@@ -50,8 +58,15 @@ public class Target : MonoBehaviour
         IEnumerator RedHitmarker()
         {
             redHitmarker.SetActive(true);
+            audioSource.PlayOneShot(redHitmarkerClip, .4f);
             yield return new WaitForSeconds(0.2f);
             redHitmarker.SetActive(false);
+        }
+
+        IEnumerator die()
+        {
+            yield return new WaitForSeconds(0.21f);
+            Destroy(gameObject);
         }
     }
 }
